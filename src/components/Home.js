@@ -8,6 +8,7 @@ import "../styles/Home.css";
 function Home() {
   const pagina = Number(useParams().page) || 1;
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     axios
@@ -15,6 +16,7 @@ function Home() {
       .then((res) => {
         const allMovies = res.data;
         setMovies(allMovies);
+        setLoading(true);
       });
   }, [pagina]);
 
@@ -22,6 +24,7 @@ function Home() {
     <div className="home">
       <h1 className="titulo">My Movie Crib 🎬</h1>
       <div className="all">
+        {loading ?
         <div className="movie-display-layout">
           {movies.map((movie, i) => (
             <div key={i} className="movie-poster">
@@ -32,8 +35,9 @@ function Home() {
                 />
               </Link>
             </div>
-          ))}
-        </div>
+          ))} 
+        </div> :
+        <p>Cargando, porfavor espere.</p>}
       </div>
       {pagina > 1 ? (
         <Link
