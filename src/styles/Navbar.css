@@ -130,6 +130,7 @@ a p {
     width: 100%;
     margin-left: 0;
     padding-top: 0.5rem;
+    order: 2;
   }
 
   .navbar-end.is-active {
