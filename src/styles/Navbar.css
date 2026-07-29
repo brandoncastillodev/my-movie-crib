@@ -1,13 +1,29 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
 .search-bar {
-  width: 90%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 400px;
 }
 
 .search-bar form {
-  width: 70%;
-  height: auto;
+  width: 100%;
+}
+
+.navbar-end {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .botonUser {
@@ -46,11 +62,13 @@ a p {
 
   .search-bar {
     width: 100%;
+    max-width: none;
     order: 3;
+    flex-basis: 100%;
   }
 
-  .search-bar form {
-    width: 100%;
+  .navbar-end {
+    margin-left: 0;
   }
 
   .navbar-end .buttons {
