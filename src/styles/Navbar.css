@@ -36,3 +36,32 @@ a p {
   width: 100%;
   scale: 1.2;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .search-bar {
+    width: 100%;
+    order: 3;
+  }
+
+  .search-bar form {
+    width: 100%;
+  }
+
+  .navbar-end .buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+}

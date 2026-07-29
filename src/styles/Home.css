@@ -33,6 +33,22 @@
   object-fit: cover;
 }
 
+@media (max-width: 600px) {
+  .titulo {
+    font-size: 1.6rem;
+  }
+
+  .sub-titulo {
+    font-size: 1.1rem;
+  }
+
+  .movie-display-layout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
+    margin: 0.5rem;
+  }
+}
+
 @media (min-width: 960px) {
   .movie-display-layout {
     display: grid;

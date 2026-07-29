@@ -73,17 +73,20 @@ function Pelicula() {
   if (!movie.id) return <h3>No hay datos</h3>;
 
   return (
-    <div className="container" style={{ marginTop: "1rem" }}>
-      <div className="columns">
+    <div className="container movie-detail" style={{ marginTop: "1rem" }}>
+      <div className="columns is-multiline">
         <div className="column is-one-quarter">
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             alt={movie.title}
+            style={{ maxWidth: "100%", height: "auto" }}
           />
         </div>
         <div className="column">
           <p className="title is-4">{movie.title}</p>
-          <p className="content">{movie.overview}</p>
+          <p className="content" style={{ wordBreak: "break-word" }}>
+            {movie.overview}
+          </p>
           <p className="subtitle is-6">
             Genre: {movie.genres[0]?.name || "unspecified"}
           </p>
@@ -91,7 +94,7 @@ function Pelicula() {
           <p className="subtitle is-6">Release Data: {movie.release_date}</p>
 
           {movie.homepage ? (
-            <p className="subtitle is-6">
+            <p className="subtitle is-6" style={{ wordBreak: "break-word" }}>
               Official Site: {` `}
               <a target="_blank" rel="noreferrer" href={`${movie.homepage}`}>
                 {movie.homepage}
@@ -125,6 +128,16 @@ function Pelicula() {
           )}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 600px) {
+          .movie-detail .column.is-one-quarter {
+            text-align: center;
+          }
+          .movie-detail .column.is-one-quarter img {
+            max-width: 200px;
+          }
+        }
+      `}</style>
     </div>
   );
 }
