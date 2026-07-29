@@ -14,7 +14,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 400px;
+}
+
+@media (min-width: 769px) {
+  .navbar {
+    position: relative;
+  }
+
+  .search-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 90%;
+    flex: none;
+  }
 }
 
 .search-bar form {
