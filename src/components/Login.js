@@ -36,12 +36,14 @@ function Login() {
             className="input-form"
             type="email"
             placeholder="Email"
+            autoComplete="off"
           />
           <input
             {...password}
             className="input-form"
             type="password"
             placeholder="Password"
+            autoComplete="new-password"
           />
           <button className="button is-primary">Enviar</button>
         </div>

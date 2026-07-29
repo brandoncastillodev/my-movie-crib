@@ -36,19 +36,21 @@ function Register() {
       <form onSubmit={handleRegister}>
         <h3 className="titulo">Registrarse</h3>
         <div className="form">
-          <input {...name} className="input-form" placeholder="Nombre" />
-          <input {...lastname} className="input-form" placeholder="Apellido" />
+          <input {...name} className="input-form" placeholder="Nombre" autoComplete="off" />
+          <input {...lastname} className="input-form" placeholder="Apellido" autoComplete="off" />
           <input
             {...email}
             className="input-form"
             type="email"
             placeholder="Email"
+            autoComplete="off"
           />
           <input
             {...password}
             className="input-form"
             type="password"
             placeholder="Password"
+            autoComplete="new-password"
           />
           <button className="button is-primary">Enviar</button>
         </div>

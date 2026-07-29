@@ -68,6 +68,7 @@ function Navbar() {
             className="input"
             type="text"
             placeholder="Buscar pelicula"
+            autoComplete="off"
           />
         </form>
       </div>
