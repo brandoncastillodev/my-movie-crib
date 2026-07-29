@@ -51,7 +51,6 @@ a p {
 .logo img {
   width: 100%;
   scale: 1.2;
-  mix-blend-mode: multiply;
 }
 
 @media (max-width: 768px) {

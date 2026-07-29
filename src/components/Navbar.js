@@ -53,7 +53,7 @@ function Navbar() {
         <Link className="navbar-item" to={"/1"}>
           <div className="logo">
             <img
-              src="https://imagizer.imageshack.com/img924/3506/mAccSe.png"
+              src="/real_logo.ico"
               alt="logo"
             ></img>
           </div>
