@@ -70,7 +70,7 @@ function Navbar() {
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <div className="search-bar">
+      <div className={`search-bar ${menuOpen ? "is-active" : ""}`}>
         <form onSubmit={handleSearch}>
           <input
             onChange={(e) => setSearch(e.target.value)}
