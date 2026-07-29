@@ -52,7 +52,8 @@
 
 @media (min-width: 601px) and (max-width: 959px) {
   .movie-display-layout {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    margin: 1rem 2rem;
   }
 }
 
