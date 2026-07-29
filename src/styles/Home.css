@@ -52,8 +52,8 @@
 @media (min-width: 960px) {
   .movie-display-layout {
     display: grid;
-    grid-template-columns: repeat(6, minmax(150px, 150px));
-    max-width: 935px;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1000px;
     margin: 0 auto;
   }
 }
