@@ -12,6 +12,7 @@ function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   function handleLogout(e) {
     e.preventDefault();
@@ -59,6 +60,15 @@ function Navbar() {
           </div>
           <p>My Movie Crib </p>
         </Link>
+        <button
+          className={`navbar-burger ${menuOpen ? "is-active" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="menu"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
       </div>
       <div className="search-bar">
         <form onSubmit={handleSearch}>
@@ -72,7 +82,7 @@ function Navbar() {
           />
         </form>
       </div>
-      <div className="navbar-end">
+      <div className={`navbar-end ${menuOpen ? "is-active" : ""}`}>
         <div className="navbar-item">
           <div className="buttons">
             {user.name ? (
