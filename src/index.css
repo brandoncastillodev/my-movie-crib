@@ -30,13 +30,11 @@ footer {
   padding: 1rem;
 }
 
-.dark-mode {
+.dark-mode,
+.dark-mode .navbar,
+.dark-mode footer {
   background-color: #1a1a2e;
   color: #e0e0e0;
-}
-
-.dark-mode .navbar {
-  background-color: #16213e !important;
 }
 
 .dark-mode .navbar-item p,
@@ -44,14 +42,16 @@ footer {
   color: #14b881;
 }
 
-.dark-mode .input {
-  background-color: #0f3460;
+.dark-mode .input,
+.dark-mode .search-bar input,
+.dark-mode .input-form {
+  background-color: #2a2a4a;
   color: #e0e0e0;
   border-color: #14b881;
 }
 
 .dark-mode .button.is-light {
-  background-color: #0f3460;
+  background-color: #2a2a4a;
   color: #e0e0e0;
   border-color: #14b881;
 }
@@ -61,31 +61,9 @@ footer {
 }
 
 .dark-mode .button.is-info {
-  background-color: #0f3460;
+  background-color: #2a2a4a;
   border-color: #14b881;
   color: #14b881;
-}
-
-.dark-mode .search-bar input {
-  background-color: #0f3460;
-  color: #e0e0e0;
-  border-color: #14b881;
-}
-
-.dark-mode .movie-poster img {
-  border: 2px solid #14b881;
-  border-radius: 6px;
-}
-
-.dark-mode .input-form {
-  background-color: #0f3460;
-  color: #e0e0e0;
-  border-color: #14b881;
-}
-
-.dark-mode footer {
-  background-color: #16213e;
-  color: #e0e0e0;
 }
 
 .dark-mode .home-icon-div {
