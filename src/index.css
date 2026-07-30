@@ -51,13 +51,14 @@ footer {
 }
 
 .dark-mode .button.is-light {
-  background-color: #2a2a4a;
+  background-color: transparent;
   color: #e0e0e0;
-  border-color: #14b881;
+  border: none;
 }
 
 .dark-mode .button.is-primary {
   background-color: #14b881;
+  color: #fff;
 }
 
 .dark-mode .button.is-info {

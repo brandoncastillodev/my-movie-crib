@@ -103,7 +103,7 @@ function Navbar() {
                 <button
                   onClick={() => dispatch(toggleTheme())}
                   className="button botonUser"
-                  style={{ background: "none", border: "1px solid #14b881", color: "#14b881", fontSize: "1.2rem" }}
+                  style={{ background: "none", border: "none", color: "#14b881", fontSize: "1.2rem" }}
                 >
                   {darkMode ? "☀️" : "🌙"}
                 </button>
@@ -121,7 +121,7 @@ function Navbar() {
                 <button
                   onClick={() => dispatch(toggleTheme())}
                   className="button botonUser"
-                  style={{ background: "none", border: "1px solid #14b881", color: "#14b881", fontSize: "1.2rem" }}
+                  style={{ background: "none", border: "none", color: "#14b881", fontSize: "1.2rem" }}
                 >
                   {darkMode ? "☀️" : "🌙"}
                 </button>
