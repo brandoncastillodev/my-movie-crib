@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Pelicula from "./components/Pelicula";
@@ -10,8 +11,9 @@ import Search from "./components/Search";
 import Footer from "./components/Footer";
 
 function App() {
+  const darkMode = useSelector((state) => state.theme.darkMode);
   return (
-    <div className="app-container">
+    <div className={`app-container${darkMode ? " dark-mode" : ""}`}>
       <Analytics />
       <Navbar />
       <div className="app-content">

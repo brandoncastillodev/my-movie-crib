@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
+import { toggleTheme } from "../state/theme";
 import "../styles/Navbar.css";
 
 function Navbar() {
   const user = useSelector((state) => state.user);
+  const darkMode = useSelector((state) => state.theme.darkMode);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
@@ -98,6 +100,13 @@ function Navbar() {
                 >
                   Log out
                 </button>
+                <button
+                  onClick={() => dispatch(toggleTheme())}
+                  className="button botonUser"
+                  style={{ background: "none", border: "1px solid #14b881", color: "#14b881", fontSize: "1.2rem" }}
+                >
+                  {darkMode ? "☀️" : "🌙"}
+                </button>
               </div>
             ) : (
               <div className="navbar-botones">
@@ -108,7 +117,14 @@ function Navbar() {
                 </Link>
                 <Link to={"/users/login"}>
                   <p className="button is-light botonUser">Log in</p>
-                </Link>{" "}
+                </Link>
+                <button
+                  onClick={() => dispatch(toggleTheme())}
+                  className="button botonUser"
+                  style={{ background: "none", border: "1px solid #14b881", color: "#14b881", fontSize: "1.2rem" }}
+                >
+                  {darkMode ? "☀️" : "🌙"}
+                </button>
               </div>
             )}
           </div>
