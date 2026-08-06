@@ -7,7 +7,7 @@ interface LoadingProps {
 const Loading: React.FC<LoadingProps> = ({ inline = false }) => {
   return (
     <div className={`loading-container ${inline ? "inline" : ""}`}>
-      <div className={`loading-spinner ${inline ? "small" : ""}`}></div>
+      <div className="loading-spinner"></div>
     </div>
   );
 };

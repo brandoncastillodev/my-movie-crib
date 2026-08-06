@@ -96,12 +96,6 @@ footer {
   animation: spin 1s linear infinite;
 }
 
-.loading-spinner.small {
-  width: 24px;
-  height: 24px;
-  border-width: 3px;
-}
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
