@@ -81,7 +81,7 @@ function Pelicula() {
   if (!movie.id) return <h3>No hay datos</h3>;
 
   return (
-    <div className="container movie-detail" style={{ marginTop: "1rem" }}>
+    <div className="container movie-detail" style={{ marginTop: "1rem", marginBottom: "4rem" }}>
       <div className="columns is-multiline">
         <div className="column is-one-quarter">
           <img
