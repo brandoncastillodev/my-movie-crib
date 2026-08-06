@@ -110,7 +110,7 @@ function Pelicula() {
           ) : null}
           {uid ? (
             likeLoading ? (
-              <Loading />
+              <Loading inline />
             ) : like ? (
               <button
                 onClick={() => handleDislike(movie.id)}

@@ -1,9 +1,13 @@
 import React from "react";
 
-const Loading: React.FC = () => {
+interface LoadingProps {
+  inline?: boolean;
+}
+
+const Loading: React.FC<LoadingProps> = ({ inline = false }) => {
   return (
-    <div className="loading-container">
-      <div className="loading-spinner"></div>
+    <div className={`loading-container ${inline ? "inline" : ""}`}>
+      <div className={`loading-spinner ${inline ? "small" : ""}`}></div>
     </div>
   );
 };
