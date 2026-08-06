@@ -1,6 +1,6 @@
 import axios from "axios";
 import useInput from "../hooks/useInput";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
 function Register() {
@@ -10,10 +10,10 @@ function Register() {
   const lastname = useInput();
   const navigate = useNavigate();
 
-  function handleRegister(e) {
+  function handleRegister(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     axios
-      .post(`https://my-movie-crib-back.onrender.com/api/users/register`, {
+      .post("https://my-movie-crib-back.onrender.com/api/users/register", {
         email: email.value,
         password: password.value,
         name: name.value,
@@ -31,6 +31,7 @@ function Register() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <div>
       <form onSubmit={handleRegister}>

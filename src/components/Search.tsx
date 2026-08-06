@@ -3,23 +3,20 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 function Search() {
-  const { name } = useParams();
-  const [movies, setMovies] = useState([]);
-  const [filter, setFilter] = useState([]);
+  const { name } = useParams<{ name: string }>();
+  const [movies, setMovies] = useState<TMDBMovieSummary[]>([]);
+  const [filter, setFilter] = useState<TMDBMovieSummary[]>([]);
 
   useEffect(() => {
+    if (!name) return;
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/movies/${name}`)
-      .then((res) => {
-        setMovies(res.data);
-      })
-      .catch((err) => {
-        console.log("error: ", err);
-      });
+      .then((res) => setMovies(res.data))
+      .catch((err) => console.log("error: ", err));
   }, [name]);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData(): Promise<void> {
       const availabilityArray = await Promise.all(
         movies.map(async (movie) => {
           try {
@@ -32,13 +29,11 @@ function Search() {
           }
         })
       );
-
       const filteredMovies = movies.filter(
         (_, index) => availabilityArray[index]
       );
       setFilter(filteredMovies);
     }
-
     fetchData();
   }, [movies]);
 
@@ -46,7 +41,7 @@ function Search() {
     return (
       <>
         <h3 className="sub-titulo">
-          No se encontraron resultados para "{name}".
+          No se encontraron resultados para &quot;{name}&quot;.
         </h3>
         <h3 style={{ fontSize: "1.7rem" }}>😵</h3>
       </>

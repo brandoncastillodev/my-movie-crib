@@ -1,32 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function User() {
-  const { id } = useParams();
-  const [favorites, setFavorites] = useState([]);
-  const [movies, setMovies] = useState([]);
+  const { id } = useParams<{ id: string }>();
+  const [favorites, setFavorites] = useState<Favorite[]>([]);
+  const [movies, setMovies] = useState<TMDBMovieSummary[]>([]);
 
   useEffect(() => {
+    if (!id) return;
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/favorites/${id}`)
-      .then((fav) => {
-        setFavorites(fav.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((fav) => setFavorites(fav.data))
+      .catch((err) => console.log(err));
   }, [id]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovies = async (): Promise<void> => {
       const moviePromises = favorites.map((fav) =>
-        axios.get(
-          `https://my-movie-crib-back.onrender.com/api/movies/search/${fav.movieId}`
-        )
+        axios.get(`https://my-movie-crib-back.onrender.com/api/movies/search/${fav.movieId}`)
       );
-
       try {
         const movieResponses = await Promise.all(moviePromises);
         const movieData = movieResponses.map((response) => response.data);
@@ -35,7 +29,6 @@ function User() {
         console.error(error);
       }
     };
-
     if (favorites.length > 0) {
       fetchMovies();
     }
@@ -48,6 +41,7 @@ function User() {
         <h3 style={{ fontSize: "1.7rem" }}>😵</h3>
       </>
     );
+
   return (
     <div>
       <h3 className="titulo">Favoritos</h3>

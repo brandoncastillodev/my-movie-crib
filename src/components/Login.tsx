@@ -1,6 +1,6 @@
 import axios from "axios";
 import useInput from "../hooks/useInput";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
 import "../styles/Login.css";
@@ -11,7 +11,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function handleLogIn(e) {
+  function handleLogIn(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     axios
       .post("https://my-movie-crib-back.onrender.com/api/users/login", {

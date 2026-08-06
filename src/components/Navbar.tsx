@@ -1,28 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../state/user";
 import { toggleTheme } from "../state/theme";
+import type { RootState } from "../state/store";
 import "../styles/Navbar.css";
 
 function Navbar() {
-  const user = useSelector((state) => state.user);
-  const darkMode = useSelector((state) => state.theme.darkMode);
+  const user = useSelector((state: RootState) => state.user);
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [search, setSearch] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  function handleLogout(e) {
+  function handleLogout(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    const initialState = {
-      name: null,
-      lastname: null,
-      email: null,
-    };
+    const initialState: UserState = { name: null, lastname: null, email: null, id: null };
     axios
       .post("https://my-movie-crib-back.onrender.com/api/users/logout")
       .then(() => {
@@ -41,10 +36,10 @@ function Navbar() {
     axios
       .get("https://my-movie-crib-back.onrender.com/api/users/me")
       .then((cok) => dispatch(setUser(cok.data)))
-      .catch();
+      .catch(() => {});
   }, [dispatch]);
 
-  function handleSearch(e) {
+  function handleSearch(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     navigate(`/movies/${search}`);
     setSearch("");
@@ -55,12 +50,9 @@ function Navbar() {
       <div className="navbar-brand">
         <Link className="navbar-item" to={"/1"}>
           <div className="logo">
-            <img
-              src="/real_logo.ico"
-              alt="logo"
-            ></img>
+            <img src="/real_logo.ico" alt="logo" />
           </div>
-          <p>My Movie Crib </p>
+          <p>My Movie Crib</p>
         </Link>
         <button
           className={`navbar-burger ${menuOpen ? "is-active" : ""}`}
@@ -94,16 +86,18 @@ function Navbar() {
                     <strong>{user.name}</strong>
                   </p>
                 </Link>
-                <button
-                  onClick={handleLogout}
-                  className="button is-light botonUser"
-                >
+                <button onClick={handleLogout as any} className="button is-light botonUser">
                   Log out
                 </button>
                 <button
                   onClick={() => dispatch(toggleTheme())}
                   className="button botonUser"
-                  style={{ background: "none", border: "1px solid #14b881", color: "#14b881", fontSize: "1.2rem" }}
+                  style={{
+                    background: "none",
+                    border: "1px solid #14b881",
+                    color: "#14b881",
+                    fontSize: "1.2rem",
+                  }}
                 >
                   {darkMode ? "☀️" : "🌙"}
                 </button>
@@ -121,7 +115,12 @@ function Navbar() {
                 <button
                   onClick={() => dispatch(toggleTheme())}
                   className="button botonUser"
-                  style={{ background: "none", border: "1px solid #14b881", color: "#14b881", fontSize: "1.2rem" }}
+                  style={{
+                    background: "none",
+                    border: "1px solid #14b881",
+                    color: "#14b881",
+                    fontSize: "1.2rem",
+                  }}
                 >
                   {darkMode ? "☀️" : "🌙"}
                 </button>

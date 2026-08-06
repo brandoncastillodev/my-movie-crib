@@ -1,27 +1,25 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import type { RootState } from "../state/store";
 
 function Pelicula() {
-  const { id } = useParams();
-  const uid = useSelector((state) => state.user.id);
-  const [like, setLike] = useState(false);
-  const [movie, setMovie] = useState([]);
+  const { id } = useParams<{ id: string }>();
+  const uid = useSelector((state: RootState) => state.user.id);
+  const [like, setLike] = useState<boolean>(false);
+  const [movie, setMovie] = useState<TMDBMovieDetail>({} as TMDBMovieDetail);
 
-  //buscar detalles de pelicula
   useEffect(() => {
+    if (!id) return;
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/movies/search/${id}`)
-      .then((res) => res.data)
-      .then((data) => {
-        setMovie(data);
-      })
+      .then((res) => setMovie(res.data))
       .catch(() => {});
   }, [id]);
 
-  //buscar si esta likeada
   useEffect(() => {
+    if (!movie.id) return;
     axios
       .get("https://my-movie-crib-back.onrender.com/api/favorites/find", {
         params: { mid: movie.id, uid },
@@ -33,22 +31,21 @@ function Pelicula() {
       .catch((err) => console.log(err));
   }, [uid, movie]);
 
-  function handleLike(mid) {
+  function handleLike(mid: number): void {
     axios
       .post("https://my-movie-crib-back.onrender.com/api/favorites/register", {
         data: { mid, uid },
       })
       .then((add) => {
-        if (!uid) alert("Ojo!", "Necesitas estar logueado 💻", "warning");
+        if (!uid) alert("Necesitas estar logueado");
         else if (add.data) {
           alert("Likeado!");
           setLike(true);
-        } else alert("La propiedad ya esta en favoritos. 🤧");
+        } else alert("La propiedad ya esta en favoritos.");
       });
   }
 
-  //dislikea
-  function handleDislike(mid) {
+  function handleDislike(mid: number): void {
     axios
       .delete("https://my-movie-crib-back.onrender.com/api/favorites/delete", {
         data: { mid, uid },
@@ -61,11 +58,7 @@ function Pelicula() {
       })
       .catch((del) => {
         if (del.code === "ERR_BAD_REQUEST") {
-          return alert(
-            "Guarda campeon!",
-            "La propiedad no esta en favoritos. 😡",
-            "danger"
-          );
+          return alert("La propiedad no esta en favoritos.");
         }
       });
   }
@@ -92,50 +85,37 @@ function Pelicula() {
           </p>
           <p className="subtitle is-6">Duration: {movie.runtime}min</p>
           <p className="subtitle is-6">Release Data: {movie.release_date}</p>
-
           {movie.homepage ? (
             <p className="subtitle is-6" style={{ wordBreak: "break-word" }}>
-              Official Site: {` `}
-              <a target="_blank" rel="noreferrer" href={`${movie.homepage}`}>
+              Official Site:{" "}
+              <a target="_blank" rel="noreferrer" href={movie.homepage}>
                 {movie.homepage}
               </a>
             </p>
-          ) : (
-            <></>
-          )}
+          ) : null}
           {uid ? (
             like ? (
               <button
-                onClick={() => {
-                  handleDislike(movie.id);
-                }}
+                onClick={() => handleDislike(movie.id)}
                 className="button is-info"
               >
                 Disike!
               </button>
             ) : (
               <button
-                onClick={() => {
-                  handleLike(movie.id);
-                }}
+                onClick={() => handleLike(movie.id)}
                 className="button is-primary"
               >
                 Like!
               </button>
             )
-          ) : (
-            <></>
-          )}
+          ) : null}
         </div>
       </div>
       <style>{`
         @media (max-width: 600px) {
-          .movie-detail .column.is-one-quarter {
-            text-align: center;
-          }
-          .movie-detail .column.is-one-quarter img {
-            max-width: 200px;
-          }
+          .movie-detail .column.is-one-quarter { text-align: center; }
+          .movie-detail .column.is-one-quarter img { max-width: 200px; }
         }
       `}</style>
     </div>

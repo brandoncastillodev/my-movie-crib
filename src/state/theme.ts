@@ -1,9 +1,9 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export const toggleTheme = createAction("TOGGLE_THEME");
-export const setTheme = createAction("SET_THEME");
+export const setTheme = createAction<boolean>("SET_THEME");
 
-const initialState = {
+const initialState: ThemeState = {
   darkMode: false,
 };
 
