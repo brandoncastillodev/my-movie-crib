@@ -8,6 +8,13 @@ function Home() {
   const pagina = Number(useParams().page) || 1;
   const [movies, setMovies] = useState<TMDBMovieSummary[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -23,6 +30,8 @@ function Home() {
       });
   }, [pagina]);
 
+  const movieLimit = isMobile ? 14 : 15;
+
   return (
     <div className="home">
       <h1 className="titulo">My Movie Crib 🎬</h1>
@@ -32,7 +41,7 @@ function Home() {
         ) : (
           <>
             <div className="movie-display-layout">
-              {movies.slice(0, 15).map((movie, i) => (
+              {movies.slice(0, movieLimit).map((movie, i) => (
                 <div key={i} className="movie-poster">
                   <Link to={`/movies/search/${movie.id}`}>
                     <img
