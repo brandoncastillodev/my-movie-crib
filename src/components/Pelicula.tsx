@@ -134,6 +134,7 @@ function Pelicula() {
           .movie-detail { padding: 0 1rem; }
           .movie-detail .column.is-one-quarter { text-align: center; }
           .movie-detail .column.is-one-quarter img { max-width: 200px; }
+          .movie-detail .content { padding: 0 1rem; }
         }
       `}</style>
     </div>
