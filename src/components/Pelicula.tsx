@@ -131,6 +131,7 @@ function Pelicula() {
       </div>
       <style>{`
         @media (max-width: 600px) {
+          .movie-detail { padding: 0 1rem; }
           .movie-detail .column.is-one-quarter { text-align: center; }
           .movie-detail .column.is-one-quarter img { max-width: 200px; }
         }
