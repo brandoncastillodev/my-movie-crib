@@ -32,7 +32,7 @@ function Home() {
         ) : (
           <>
             <div className="movie-display-layout">
-              {movies.map((movie, i) => (
+              {movies.slice(0, 15).map((movie, i) => (
                 <div key={i} className="movie-poster">
                   <Link to={`/movies/search/${movie.id}`}>
                     <img
