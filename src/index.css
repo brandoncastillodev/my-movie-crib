@@ -75,6 +75,21 @@ footer {
   filter: brightness(1.2);
 }
 
+.dark-mode .title,
+.dark-mode .subtitle,
+.dark-mode .content,
+.dark-mode p {
+  color: #ffffff;
+}
+
+.dark-mode .title.is-4 {
+  color: #ffffff;
+}
+
+.dark-mode .subtitle.is-6 {
+  color: #e0e0e0;
+}
+
 .loading-container {
   display: flex;
   justify-content: center;
