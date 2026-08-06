@@ -90,6 +90,14 @@ footer {
   color: #e0e0e0;
 }
 
+.dark-mode a {
+  color: #00C4A7;
+}
+
+.dark-mode a:hover {
+  color: #00e6c3;
+}
+
 .loading-container {
   display: flex;
   justify-content: center;
