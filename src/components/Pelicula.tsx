@@ -11,6 +11,7 @@ function Pelicula() {
   const [like, setLike] = useState<boolean>(false);
   const [movie, setMovie] = useState<TMDBMovieDetail>({} as TMDBMovieDetail);
   const [loading, setLoading] = useState<boolean>(true);
+  const [likeLoading, setLikeLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!id) return;
@@ -40,6 +41,7 @@ function Pelicula() {
   }, [uid, movie]);
 
   function handleLike(mid: number): void {
+    setLikeLoading(true);
     axios
       .post("https://my-movie-crib-back.onrender.com/api/favorites/register", {
         data: { mid, uid },
@@ -50,10 +52,12 @@ function Pelicula() {
           alert("Likeado!");
           setLike(true);
         } else alert("La propiedad ya esta en favoritos.");
-      });
+      })
+      .finally(() => setLikeLoading(false));
   }
 
   function handleDislike(mid: number): void {
+    setLikeLoading(true);
     axios
       .delete("https://my-movie-crib-back.onrender.com/api/favorites/delete", {
         data: { mid, uid },
@@ -68,7 +72,8 @@ function Pelicula() {
         if (del.code === "ERR_BAD_REQUEST") {
           return alert("La propiedad no esta en favoritos.");
         }
-      });
+      })
+      .finally(() => setLikeLoading(false));
   }
 
   if (loading) return <Loading />;
@@ -104,7 +109,9 @@ function Pelicula() {
             </p>
           ) : null}
           {uid ? (
-            like ? (
+            likeLoading ? (
+              <Loading />
+            ) : like ? (
               <button
                 onClick={() => handleDislike(movie.id)}
                 className="button is-info"
