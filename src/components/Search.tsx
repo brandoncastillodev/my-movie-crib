@@ -1,18 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 function Search() {
   const { name } = useParams<{ name: string }>();
   const [movies, setMovies] = useState<TMDBMovieSummary[]>([]);
   const [filter, setFilter] = useState<TMDBMovieSummary[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!name) return;
+    setLoading(true);
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/movies/${name}`)
-      .then((res) => setMovies(res.data))
-      .catch((err) => console.log("error: ", err));
+      .then((res) => {
+        setMovies(res.data);
+        if (res.data.length === 0) setLoading(false);
+      })
+      .catch((err) => {
+        console.log("error: ", err);
+        setLoading(false);
+      });
   }, [name]);
 
   useEffect(() => {
@@ -33,9 +42,14 @@ function Search() {
         (_, index) => availabilityArray[index]
       );
       setFilter(filteredMovies);
+      setLoading(false);
     }
-    fetchData();
+    if (movies.length > 0) {
+      fetchData();
+    }
   }, [movies]);
+
+  if (loading) return <Loading />;
 
   if (filter.length < 1)
     return (

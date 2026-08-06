@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useState } from "react";
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import Loading from "./Loading";
 
 function Register() {
   const email = useInput();
@@ -9,9 +11,11 @@ function Register() {
   const name = useInput();
   const lastname = useInput();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
 
   function handleRegister(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
+    setLoading(true);
     axios
       .post("https://my-movie-crib-back.onrender.com/api/users/register", {
         email: email.value,
@@ -28,9 +32,15 @@ function Register() {
         } else {
           alert("Ingreso datos incorrectos!");
         }
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   }
+
+  if (loading) return <Loading />;
 
   return (
     <div>

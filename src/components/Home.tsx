@@ -2,20 +2,25 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../styles/Home.css";
+import Loading from "./Loading";
 
 function Home() {
   const pagina = Number(useParams().page) || 1;
   const [movies, setMovies] = useState<TMDBMovieSummary[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/movies/home/${pagina}`)
       .then((res) => {
         setMovies(res.data);
-        setLoading(true);
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   }, [pagina]);
 
   return (
@@ -23,6 +28,8 @@ function Home() {
       <h1 className="titulo">My Movie Crib 🎬</h1>
       <div className="all">
         {loading ? (
+          <Loading />
+        ) : (
           <>
             <div className="movie-display-layout">
               {movies.map((movie, i) => (
@@ -55,8 +62,6 @@ function Home() {
               Next
             </Link>
           </>
-        ) : (
-          <p>Cargando, porfavor espere.</p>
         )}
       </div>
     </div>

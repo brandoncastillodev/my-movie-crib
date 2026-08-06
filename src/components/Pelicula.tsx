@@ -3,19 +3,27 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../state/store";
+import Loading from "./Loading";
 
 function Pelicula() {
   const { id } = useParams<{ id: string }>();
   const uid = useSelector((state: RootState) => state.user.id);
   const [like, setLike] = useState<boolean>(false);
   const [movie, setMovie] = useState<TMDBMovieDetail>({} as TMDBMovieDetail);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!id) return;
+    setLoading(true);
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/movies/search/${id}`)
-      .then((res) => setMovie(res.data))
-      .catch(() => {});
+      .then((res) => {
+        setMovie(res.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   useEffect(() => {
@@ -62,6 +70,8 @@ function Pelicula() {
         }
       });
   }
+
+  if (loading) return <Loading />;
 
   if (!movie.id) return <h3>No hay datos</h3>;
 

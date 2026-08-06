@@ -1,18 +1,22 @@
 import axios from "axios";
+import { useState } from "react";
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
 import "../styles/Login.css";
+import Loading from "./Loading";
 
 function Login() {
   const email = useInput();
   const password = useInput();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(false);
 
   function handleLogIn(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
+    setLoading(true);
     axios
       .post("https://my-movie-crib-back.onrender.com/api/users/login", {
         email: email.value,
@@ -23,8 +27,13 @@ function Login() {
         alert(`Bienvenido ${payload.data.name}!`);
         navigate("/1");
       })
-      .catch(() => alert("Datos incorrectos!"));
+      .catch(() => {
+        alert("Datos incorrectos!");
+        setLoading(false);
+      });
   }
+
+  if (loading) return <Loading />;
 
   return (
     <div>

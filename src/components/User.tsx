@@ -2,18 +2,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 function User() {
   const { id } = useParams<{ id: string }>();
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [movies, setMovies] = useState<TMDBMovieSummary[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!id) return;
+    setLoading(true);
     axios
       .get(`https://my-movie-crib-back.onrender.com/api/favorites/${id}`)
-      .then((fav) => setFavorites(fav.data))
-      .catch((err) => console.log(err));
+      .then((fav) => {
+        setFavorites(fav.data);
+        if (fav.data.length === 0) setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   }, [id]);
 
   useEffect(() => {
@@ -28,11 +37,14 @@ function User() {
       } catch (error) {
         console.error(error);
       }
+      setLoading(false);
     };
     if (favorites.length > 0) {
       fetchMovies();
     }
   }, [favorites]);
+
+  if (loading) return <Loading />;
 
   if (movies.length < 1)
     return (
