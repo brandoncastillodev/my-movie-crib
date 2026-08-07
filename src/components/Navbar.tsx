@@ -81,10 +81,8 @@ function Navbar() {
           <div className="buttons">
             {user.name ? (
               <div>
-                <Link to={`/users/${user.id}`}>
-                  <p className="button is-primary botonUser">
-                    <strong>{user.name}</strong>
-                  </p>
+                <Link to={`/users/${user.id}`} className="button is-primary botonUser">
+                  <strong>{user.name}</strong>
                 </Link>
                 <button onClick={handleLogout as any} className="button is-light botonUser">
                   Log out
@@ -98,13 +96,11 @@ function Navbar() {
               </div>
             ) : (
               <div className="navbar-botones">
-                <Link to={"/users/register"}>
-                  <p className="button is-primary botonUser">
-                    <strong>Register</strong>
-                  </p>
+                <Link to={"/users/register"} className="button is-primary botonUser">
+                  <strong>Register</strong>
                 </Link>
-                <Link to={"/users/login"}>
-                  <p className="button is-light botonUser">Log in</p>
+                <Link to={"/users/login"} className="button is-light botonUser">
+                  Log in
                 </Link>
                 <button
                   onClick={() => dispatch(toggleTheme())}

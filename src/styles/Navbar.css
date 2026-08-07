@@ -45,13 +45,13 @@
   margin-right: 0.5rem;
 }
 
-a:hover p {
+a:hover {
   color: rgb(29, 185, 112);
 }
 
-a p {
-  color: rgb(20, 184, 129);
-  font-size: 1.3rem;
+a.button {
+  color: inherit;
+  text-decoration: none;
 }
 
 .logo {
