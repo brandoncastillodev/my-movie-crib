@@ -66,7 +66,7 @@ function Home() {
               onClick={() => window.scrollTo(0, 0)}
               to={`/${pagina + 1}`}
               className="button is-primary"
-              style={{ marginTop: "1.5rem" }}
+              style={{ marginTop: "2rem" }}
             >
               Next
             </Link>
