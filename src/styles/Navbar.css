@@ -43,9 +43,6 @@
 
 .botonUser {
   margin-right: 0.5rem;
-  height: 2.5rem;
-  display: inline-flex;
-  align-items: center;
 }
 
 a:hover p {
