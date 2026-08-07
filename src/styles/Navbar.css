@@ -46,10 +46,12 @@
 }
 
 .botonUser:hover,
-.botonUser:focus {
+.botonUser:focus,
+.botonUser:focus-visible {
   border-color: rgb(29, 185, 112);
   color: rgb(29, 185, 112);
   box-shadow: 0 0 0 2px rgba(29, 185, 112, 0.3);
+  outline: none;
 }
 
 a:hover {
