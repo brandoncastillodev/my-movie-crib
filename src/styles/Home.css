@@ -2,12 +2,6 @@
   margin-bottom: 0;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
 .pagination-btn {
   margin-top: 1rem;
 }
@@ -60,11 +54,6 @@
     gap: 0.3rem;
     margin: 0.5rem;
     margin-bottom: 2rem;
-  }
-
-  .pagination {
-    justify-content: space-between;
-    padding: 0 0.5rem;
   }
 
   .pagination-btn {

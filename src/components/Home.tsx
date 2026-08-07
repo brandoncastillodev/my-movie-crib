@@ -53,24 +53,22 @@ function Home() {
                 </div>
               ))}
             </div>
-            <div className="pagination">
-              {pagina > 1 && (
-                <Link
-                  onClick={() => window.scrollTo(0, 0)}
-                  to={`/${pagina - 1}`}
-                  className="button is-info pagination-btn"
-                >
-                  Previous
-                </Link>
-              )}
+            {pagina > 1 && (
               <Link
                 onClick={() => window.scrollTo(0, 0)}
-                to={`/${pagina + 1}`}
-                className="button is-primary pagination-btn"
+                to={`/${pagina - 1}`}
+                className="button is-info pagination-btn"
               >
-                Next
+                Previous
               </Link>
-            </div>
+            )}
+            <Link
+              onClick={() => window.scrollTo(0, 0)}
+              to={`/${pagina + 1}`}
+              className="button is-primary pagination-btn"
+            >
+              Next
+            </Link>
           </>
         )}
       </div>
