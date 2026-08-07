@@ -45,6 +45,14 @@
   aspect-ratio: 2 / 3;
 }
 
+.movie-poster a:focus-visible {
+  outline: none;
+}
+
+.movie-poster a:focus-visible img {
+  box-shadow: 0 0 0 3px rgba(29, 185, 112, 0.8);
+}
+
 @media (max-width: 600px) {
   .titulo {
     font-size: 1.6rem;
