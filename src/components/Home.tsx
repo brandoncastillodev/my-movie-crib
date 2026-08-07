@@ -57,8 +57,8 @@ function Home() {
               <Link
                 onClick={() => window.scrollTo(0, 0)}
                 to={`/${pagina - 1}`}
-                className="button is-info"
-                style={{ marginTop: "1rem", marginRight: "0.5rem" }}
+                className="button is-info pagination-btn"
+                style={{ marginRight: "0.5rem" }}
               >
                 Previous
               </Link>
@@ -66,8 +66,7 @@ function Home() {
             <Link
               onClick={() => window.scrollTo(0, 0)}
               to={`/${pagina + 1}`}
-              className="button is-primary"
-              style={{ marginTop: "1rem" }}
+              className="button is-primary pagination-btn"
             >
               Next
             </Link>
