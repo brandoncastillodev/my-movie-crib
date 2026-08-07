@@ -57,6 +57,10 @@
   }
 
   .pagination-btn {
+    margin-top: 0.3rem;
+  }
+
+  .pagination-btn + .pagination-btn {
     margin-top: 0.5rem;
   }
 }
