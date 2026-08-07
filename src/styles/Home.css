@@ -7,7 +7,7 @@
 }
 
 .pagination-btn + .pagination-btn {
-  margin-left: 7rem;
+  margin-left: 1rem;
 }
 
 .titulo {
@@ -65,7 +65,7 @@
   }
 
   .pagination-btn + .pagination-btn {
-    margin-left: 3rem;
+    margin-left: 1rem;
   }
 }
 
