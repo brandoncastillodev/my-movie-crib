@@ -76,9 +76,9 @@ a.button {
 }
 
 .navbar-item:focus-visible {
-  border: 2px solid rgb(29, 185, 112);
-  box-shadow: 0 0 0 2px rgba(29, 185, 112, 0.3);
-  outline: none;
+  border: 2px solid rgb(29, 185, 112) !important;
+  box-shadow: 0 0 0 2px rgba(29, 185, 112, 0.3) !important;
+  outline: none !important;
   border-radius: 4px;
 }
 
