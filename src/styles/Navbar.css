@@ -36,6 +36,12 @@
   width: 100%;
 }
 
+.search-bar input:focus {
+  border-color: rgb(29, 185, 112);
+  box-shadow: 0 0 0 2px rgba(29, 185, 112, 0.3);
+  outline: none;
+}
+
 .navbar-end {
   margin-left: auto;
   flex-shrink: 0;
