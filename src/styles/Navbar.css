@@ -60,6 +60,12 @@
   outline: none !important;
 }
 
+.button.is-primary.botonUser:hover,
+.button.is-primary.botonUser:focus,
+.button.is-primary.botonUser:focus-visible {
+  color: white !important;
+}
+
 a:hover {
   color: rgb(29, 185, 112);
 }
