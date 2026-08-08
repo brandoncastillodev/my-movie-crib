@@ -53,7 +53,8 @@
 
 .botonUser:hover,
 .botonUser:focus,
-.botonUser:focus-visible {
+.botonUser:focus-visible,
+.botonUser:active {
   border-color: rgb(29, 185, 112) !important;
   color: rgb(29, 185, 112) !important;
   box-shadow: 0 0 0 2px rgba(29, 185, 112, 0.3) !important;
@@ -62,7 +63,8 @@
 
 .button.is-primary.botonUser:hover,
 .button.is-primary.botonUser:focus,
-.button.is-primary.botonUser:focus-visible {
+.button.is-primary.botonUser:focus-visible,
+.button.is-primary.botonUser:active {
   color: white !important;
 }
 
