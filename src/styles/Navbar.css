@@ -37,9 +37,9 @@
 }
 
 .search-bar input:focus {
-  border-color: rgb(29, 185, 112);
-  box-shadow: 0 0 0 2px rgba(29, 185, 112, 0.3);
-  outline: none;
+  border: 2px solid rgb(29, 185, 112) !important;
+  box-shadow: 0 0 0 3px rgba(29, 185, 112, 0.5) !important;
+  outline: none !important;
 }
 
 .navbar-end {
